@@ -29,6 +29,12 @@ module.exports = {
 
     res.status(200).json(session.user);
   },
-  signout: (req, res, next) => {},
-  getUser: (req, res, next) => {}
+  signout: (req, res, next) => {
+    req.session.destroy();
+    res.status(200).json(req.session);
+  },
+  getUser: (req, res, next) => {
+    const { session } = req;
+    res.status(200).json(session.user);
+  }
 };
